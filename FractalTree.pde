@@ -25,4 +25,23 @@ public class Cluster {
         }
     } 
 }
+public void show() {
+        int startX = myX;
+        int startY = myY;
+        stroke(pigment);
+        for (int i = 0; i < myNumSegments; i++) {
+            myAngle += Math.random() * 0.4 - 0.2;
+            int endX = startX + (int)(Math.cos(myAngle) * SEG_LENGTH);
+            int endY = startY + (int)(Math.sin(myAngle) * SEG_LENGTH);
+            line(startX, startY, endX, endY);
+            startX = endX;
+            startY = endY;
+        }
+        if (myNumSegments < 6) {
+            return;
+        } else {
+            new Cluster(myNumSegments/3, startX, startY);
+        }
+    }
+}
 } 
